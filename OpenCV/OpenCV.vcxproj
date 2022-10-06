@@ -145,7 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="OpenCV.cpp" />
+    <ClCompile Include="CameraToConsole.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
