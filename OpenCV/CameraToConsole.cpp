@@ -1,4 +1,4 @@
-﻿#include <windows.h>
+#include <windows.h>
 #include <opencv2/opencv.hpp>
 #include <iostream>
 #include <stdio.h>
@@ -27,9 +27,9 @@ void SetWindow(int PixelWidth, int PixelHeight)
     Rect.Bottom = PixelHeight - 1;
     Rect.Right = PixelWidth - 1;
 
-    SetConsoleWindowInfo(Handle, TRUE, &Rect);
-    SetConsoleScreenBufferSize(Handle, coord);
     SetCurrentConsoleFontEx(Handle, TRUE, &fontInfo);
+    SetConsoleWindowInfo(Handle, TRUE, &Rect);
+    SetConsoleScreenBufferSize(Handle, coord);   
 }
 
 int main()
