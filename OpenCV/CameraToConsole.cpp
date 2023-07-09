@@ -1,5 +1,5 @@
-#include <windows.h>
 #include <opencv2/opencv.hpp>
+#include <windows.h>
 #include <iostream>
 #include <stdio.h>
 
@@ -51,7 +51,6 @@ int main()
     }
 
     //Different gradients
-
     char gradient[] = " .:!/r(l1Z4H9W8$@";
     //char gradient[] = " .`:I!>~_&[{)|/frxnuvczXYUJCLQ0Zmwqpdbkhao#MW8B@$";
     int x;
@@ -65,11 +64,20 @@ int main()
     Mat Pixel;
 
     while (true)
-    {
+    { 
         //resize and grayscale image
         bool bSuccess = cap.read(frame);
+
+        if(bSuccess == false)
+        {
+            cout << "video camera is disconnected" << endl;
+            cin.get();
+            break;
+        }
+
         cvtColor(frame, Gray, COLOR_RGB2GRAY);
         resize(Gray, Pixel, Size(PixelWidth, PixelHeight), INTER_LINEAR);
+        //imshow("image", Gray);
 
         for (y = 0; y < PixelHeight; y++)
         {
@@ -83,12 +91,7 @@ int main()
         mass[PixelWidth * PixelHeight] = '\0';
         WriteConsoleOutputCharacter(Handle, mass, PixelWidth * PixelHeight, { 0, 0 }, &dwBytesWritten); //Buffering image and output
 
-        if (bSuccess == false)
-        {
-            cout << "video camera is disconnected" << endl;
-            cin.get();
-            break;
-        }
+        waitKey(0);
     }
     return 0;
 }
