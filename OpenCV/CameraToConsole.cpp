@@ -2,35 +2,13 @@
 #include <windows.h>
 #include <iostream>
 #include <stdio.h>
+#include <time.h>
 
 using namespace cv;
 using namespace std;
 
 HANDLE Handle = GetStdHandle(STD_OUTPUT_HANDLE);
 DWORD dwBytesWritten = 0;
-
-void SetWindow(int PixelWidth, int PixelHeight)
-{
-    CONSOLE_FONT_INFOEX fontInfo;
-    GetCurrentConsoleFontEx(Handle, TRUE, &fontInfo);
-    fontInfo.dwFontSize.X = 8;
-
-    _COORD coord;
-    ZeroMemory(&coord, sizeof(_COORD));
-    coord.X = PixelWidth;
-    coord.Y = PixelHeight;
-
-    _SMALL_RECT Rect;
-    ZeroMemory(&Rect, sizeof(_SMALL_RECT));
-    Rect.Top = 0;
-    Rect.Left = 0;
-    Rect.Bottom = PixelHeight - 1;
-    Rect.Right = PixelWidth - 1;
-
-    SetCurrentConsoleFontEx(Handle, TRUE, &fontInfo);
-    SetConsoleWindowInfo(Handle, TRUE, &Rect);
-    SetConsoleScreenBufferSize(Handle, coord);   
-}
 
 int main()
 {
@@ -41,7 +19,8 @@ int main()
     int PixelWidth = dWidth / 3;
     int PixelHeight = PixelWidth / 2.1818;
 
-    SetWindow(PixelWidth, PixelHeight);
+
+    std::cout << "\033[8;" << PixelHeight * 3 << ";" << PixelWidth << "t"; // set console size
 
     if (cap.isOpened() == false)
     {
@@ -77,7 +56,7 @@ int main()
 
         cvtColor(frame, Gray, COLOR_RGB2GRAY);
         resize(Gray, Pixel, Size(PixelWidth, PixelHeight), INTER_LINEAR);
-        //imshow("image", Gray);
+        //imshow("image", Pixel);
 
         for (y = 0; y < PixelHeight; y++)
         {
@@ -91,7 +70,7 @@ int main()
         mass[PixelWidth * PixelHeight] = '\0';
         WriteConsoleOutputCharacter(Handle, mass, PixelWidth * PixelHeight, { 0, 0 }, &dwBytesWritten); //Buffering image and output
 
-        waitKey(0);
+        waitKey();
     }
     return 0;
 }

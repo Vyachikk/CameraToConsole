@@ -1,4 +1,4 @@
 ﻿  CameraToConsole.cpp
-C:\Users\Vyacheslav\source\repos\CamToConsole\OpenCV\CameraToConsole.cpp(39,16): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
-C:\Users\Vyacheslav\source\repos\CamToConsole\OpenCV\CameraToConsole.cpp(42,21): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\Vyacheslav\source\repos\CamToConsole\OpenCV\CameraToConsole.cpp(17,16): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+C:\Users\Vyacheslav\source\repos\CamToConsole\OpenCV\CameraToConsole.cpp(20,21): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
   OpenCV.vcxproj -> C:\Users\Vyacheslav\source\repos\CamToConsole\x64\Debug\OpenCV.exe
